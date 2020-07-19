@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>RandomEmoji</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/marx/3.0.7/marx.css">
+</head>
+
+<body>
+<main>
+    <div align="center">
+        <h1>RandomEmoji</h1>
+        <p id="emoji"></p>
+        <form name="mawasuyatsu" style="display:inline-flex">
+            <input type="number" name="ikutsu" value="1" min="1" max="92">　
+            <input type="button" value="まわす" onclick="drawEmoji();"/>
+        </form>
+    </div>
+</main>
+
+<script>
+    const emojis = ['😀','😃','😄','😁','😆','😅','😂','🤣','☺️','😊','😇','🙂','🙃','😉','😌','😍','🥰','😘','😗','😙','😚','😋','😛','😝','😜','🤪','🤨','🧐','🤓','😎','🤩','🥳','😏','😒','😞','😔','😟','😕','🙁','☹️','😣','😖','😫','😩','🥺','😢','😭','😤','😠','😡','🤬','🤯','😳','🥵','🥶','😱','😨','😰','😥','😓','🤗','🤔','🤭','🤫','🤥','😶','😐','😑','😬','🙄','😯','😦','😧','😮','😲','🥱','😴','🤤','😪','😵','🤐','🥴','🤢','🤮','🤧','😷','🤒','🤕','🤑','🤠','😈','👿'];
+
+    window.onload = function　() {
+        drawEmoji()
+    }
+    function drawEmoji() {
+        let target = document.getElementById("emoji");
+        target.textContent = generateEmoji();
+    }
+    function generateEmoji() {
+        let ikutsu = document.mawasuyatsu.ikutsu.value;
+        let randoms = [];
+        for (let i = 1; i <= ikutsu; i++) {
+            while (true) {
+                let tmp = Math.floor(Math.random() * emojis.length);
+                if(!randoms.includes(tmp)){
+                    randoms.push(tmp);
+                    break;
+                }
+            }
+        }
+        return randoms.map(number => emojis[number]).join(" ");
+    }
+</script>
+</body>
+<style type="text/css">
+    p {
+        font-family: Segoe UI Emoji;
+        font-size: 6em;
+    }
+</style>
+</html>
