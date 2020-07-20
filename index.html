@@ -27,15 +27,18 @@
     }
     function drawEmoji() {
         let target = document.getElementById("emoji");
-        target.textContent = generateEmoji();
-    }
-    function generateEmoji() {
         let ikutsu = document.mawasuyatsu.ikutsu.value;
+        if (ikutsu > emojis.length) {
+            return;
+        }
+        target.textContent = generateEmoji(ikutsu);
+    }
+    function generateEmoji(ikutsu) {
         let randoms = [];
         for (let i = 1; i <= ikutsu; i++) {
             while (true) {
                 let tmp = Math.floor(Math.random() * emojis.length);
-                if(!randoms.includes(tmp)){
+                if (!randoms.includes(tmp)) {
                     randoms.push(tmp);
                     break;
                 }
